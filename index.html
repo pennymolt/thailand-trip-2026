@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰國家族旅遊 2026 - 倒數計時</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        body { font-family: 'Noto+Sans+TC', sans-serif; }
+    </style>
+</head>
+<body class="bg-orange-50 text-gray-800">
+    <nav class="p-6 flex justify-between items-center bg-white shadow-sm">
+        <h1 class="text-2xl font-bold text-orange-600">🇹🇭 泰國旅遊 2026</h1>
+        <div class="space-x-4">
+            <a href="index.html" class="hover:text-orange-500 font-bold">首頁</a>
+            <a href="itinerary.html" class="hover:text-orange-500">行程總覽</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto py-20 px-6 text-center">
+        <h2 class="text-4xl font-extrabold mb-8">汪家泰國大冒險倒數</h2>
+        
+        <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <span id="days" class="block text-5xl font-black text-orange-500">00</span>
+                <span class="text-sm text-gray-500 uppercase tracking-widest">天</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <span id="hours" class="block text-5xl font-black text-orange-500">00</span>
+                <span class="text-sm text-gray-500 uppercase tracking-widest">時</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <span id="minutes" class="block text-5xl font-black text-orange-500">00</span>
+                <span class="text-sm text-gray-500 uppercase tracking-widest">分</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <span id="seconds" class="block text-5xl font-black text-orange-500">00</span>
+                <span class="text-sm text-gray-500 uppercase tracking-widest">秒</span>
+            </div>
+        </div>
+
+        <p class="text-xl text-gray-600 mb-10">準備好迎接陽光、沙灘、泰奶和 IconSiam 了嗎？</p>
+        
+        <a href="itinerary.html" class="bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-700 transition-colors shadow-xl">
+            查看每日行程 →
+        </a>
+    </main>
+
+    <script>
+        const targetDate = new Date("2026-08-08T00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").innerHTML = "<h2 class='text-5xl font-black text-orange-600 w-full'>就是今天！我們出發啦！✈️</h2>";
+            }
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
