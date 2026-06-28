@@ -12,6 +12,12 @@
         .day-section { min-height: 100vh; padding: 100px 24px 80px; }
         .time-badge { @apply inline-block bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-bold mr-2; }
     </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .custom-popup .leaflet-popup-content-wrapper { border-radius: 12px; font-family: 'Noto Sans TC', sans-serif; font-size: 13px; padding: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .custom-popup .leaflet-popup-content h3 { margin: 0 0 6px 0; color: #ea580c; font-weight: 800; font-size: 14px; }
+        .custom-popup .leaflet-popup-content p { margin: 0; color: #4b5563; line-height: 1.5; }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -91,6 +97,45 @@
                 <a href="#day8" class="group bg-indigo-50 p-6 rounded-2xl border border-indigo-100 hover:border-indigo-300 hover:shadow-lg transition-all">
                     <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">✈️</span><div><div class="text-orange-600 font-bold text-sm">DAY 8 - 8/15 (六)</div><div class="text-xl font-bold text-gray-800">最後補貨、BR202 返台</div></div></div>
                 </a>
+            </div>
+
+            <!-- Dual Interactive Maps (Injected exactly once) -->
+            <div class="mt-12 grid md:grid-cols-2 gap-8">
+                <!-- Pattaya Map Card -->
+                <div class="bg-white shadow-xl border border-orange-100 p-6 rounded-3xl relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-3xl">🏝️</span>
+                        <div>
+                            <h3 class="text-xl font-black text-gray-900">芭達雅互動路線地圖</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">Pattaya: D1-D3 景點、度假飯店與泰拳</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mb-4" id="pattaya-controls">
+                        <button class="pat-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all" onclick="showPattayaRoute(0, this)">🗺️ 顯示全圖</button>
+                        <button class="pat-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showPattayaRoute(1, this)">D1: 抵達</button>
+                        <button class="pat-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showPattayaRoute(2, this)">D2: 真理寺</button>
+                    </div>
+                    <div id="map-pattaya" class="h-[360px] w-full rounded-2xl border border-gray-100 shadow-inner relative z-10"></div>
+                </div>
+
+                <!-- Bangkok Map Card -->
+                <div class="bg-white shadow-xl border border-orange-100 p-6 rounded-3xl relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-3xl">🕌</span>
+                        <div>
+                            <h3 class="text-xl font-black text-gray-900">曼谷互動路線地圖</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">Bangkok: D3-D8 頂奢Spa、ICONSIAM與景點</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4" id="bangkok-controls">
+                        <button class="bkk-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(0, this)">🗺️ 全圖</button>
+                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(4, this)">D4: 文化日</button>
+                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(5, this)">D5: Safari</button>
+                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(6, this)">D6: Spa避暑</button>
+                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(7, this)">D7: 購物/中國城</button>
+                    </div>
+                    <div id="map-bangkok" class="h-[360px] w-full rounded-2xl border border-gray-100 shadow-inner relative z-10"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -458,7 +503,7 @@
                     </div>
                 </div>
             <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Suvarnabhumi_Airport_Departure_Hall.jpg" alt="Suvarnabhumi Airport Departure" class="absolute w-full h-full object-cover">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/202402_Concourse_A_of_Suvarnabhumi_International_Airport.jpg" alt="Suvarnabhumi Airport Departure" class="absolute w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">BKK Airport, homeward bound</p></div>
             </header>
 
@@ -754,6 +799,148 @@
             document.getElementById('navbar').style.transform = curr > lastScroll && curr > 200 ? 'translateY(-100%)' : 'translateY(0)';
             lastScroll = curr;
         });
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Custom Colored Markers
+        function getMarkerIcon(color) {
+            return L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-' + color + '.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+        }
+
+        var redIcon = getMarkerIcon('red');
+        var blueIcon = getMarkerIcon('blue');
+        var orangeIcon = getMarkerIcon('orange');
+        var greenIcon = getMarkerIcon('green');
+
+        // ==========================================
+        // 1. PATTAYA MAP (D1 - D3)
+        // ==========================================
+        var mapPattaya = L.map('map-pattaya', { scrollWheelZoom: false }).setView([12.9350, 100.8900], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OSM'
+        }).addTo(mapPattaya);
+
+        var pattayaSpots = [
+            { name: "Courtyard North Pattaya", coords: [12.9520, 100.8850], icon: redIcon, desc: "<h3>🏨 Courtyard North Pattaya</h3><p>Day 1-2 住宿大本營。全新精緻度假酒店，位置安靜優雅。</p>" },
+            { name: "真理寺 (Sanctuary of Truth)", coords: [12.9715, 100.8890], icon: blueIcon, desc: "<h3>⛩️ 真理寺</h3><p>Day 2 早上。全木雕震撼神殿，拍全家福首選！</p>" },
+            { name: "Terminal 21 Pattaya", coords: [12.9430, 100.8885], icon: blueIcon, desc: "<h3>🛍️ Terminal 21 Pattaya</h3><p>Day 2 下午。航站主題大商場，吹冷氣避暑好地方。</p>" },
+            { name: "Cave Beach Club", coords: [12.8250, 100.9120], icon: orangeIcon, desc: "<h3>🌅 Cave Beach Club</h3><p>Day 2 夕陽晚餐。超火沙灘第一排沙發座，必須提前 LINE 預約！</p>" },
+            { name: "Max Muay Thai", coords: [12.9330, 100.9000], icon: orangeIcon, desc: "<h3>🥊 Max Muay Thai</h3><p>Day 2 晚上。熱血賁張的職業泰拳賽，打擊感爆棚。</p>" }
+        ];
+
+        pattayaSpots.forEach(function(s) {
+            L.marker(s.coords, { icon: s.icon }).addTo(mapPattaya).bindPopup(s.desc, { className: 'custom-popup' });
+        });
+
+        // Pattaya Routes
+        var pattayaRoutes = {
+            1: L.polyline([[12.9520, 100.8850]], { color: '#f97316', weight: 4 }), // Just hotel on arrival
+            2: L.polyline([
+                [12.9520, 100.8850], // Hotel
+                [12.9715, 100.8890], // Sanctuary
+                [12.9430, 100.8885], // Terminal 21
+                [12.8250, 100.9120], // Cave Beach
+                [12.9330, 100.9000], // Muay Thai
+                [12.9520, 100.8850]  // Back to Hotel
+            ], { color: '#f97316', weight: 4, opacity: 0.8, dashArray: '8, 8' })
+        };
+
+        function showPattayaRoute(day, btn) {
+            var btns = document.querySelectorAll('.pat-btn');
+            btns.forEach(function(b) { b.className = "pat-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all"; });
+            if (btn) btn.className = "pat-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all";
+
+            for (var d in pattayaRoutes) { mapPattaya.removeLayer(pattayaRoutes[d]); }
+
+            if (day === 0) {
+                mapPattaya.setView([12.9350, 100.8900], 12);
+            } else {
+                pattayaRoutes[day].addTo(mapPattaya);
+                mapPattaya.fitBounds(pattayaRoutes[day].getBounds(), { padding: [40, 40] });
+            }
+        }
+
+        // ==========================================
+        // 2. BANGKOK MAP (D3 - D8)
+        // ==========================================
+        var mapBangkok = L.map('map-bangkok', { scrollWheelZoom: false }).setView([13.7365, 100.5400], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OSM'
+        }).addTo(mapBangkok);
+
+        var sgs_coord = [13.7365, 100.5595];
+
+        var bangkokSpots = [
+            { name: "Sheraton Grande Sukhumvit", coords: sgs_coord, icon: redIcon, desc: "<h3>🏨 Sheraton Grande Sukhumvit</h3><p>Day 3-8 曼谷大本營。直連 BTS Asok 站，地段之王，雨林泳池超正！</p>" },
+            { name: "大皇宮 & 臥佛寺", coords: [13.7500, 100.4915], icon: blueIcon, desc: "<h3>🕌 大皇宮 & 臥佛寺</h3><p>Day 4 早上。泰國國寶級文化地標，震撼金碧輝煌。</p>" },
+            { name: "鄭王廟 (Wat Arun)", coords: [13.7437, 100.4889], icon: blueIcon, desc: "<h3>⛩️ 鄭王廟 (Wat Arun)</h3><p>Day 4 下午。純白絕美佛塔，落日與河景極致上鏡。</p>" },
+            { name: "Safari World", coords: [13.8650, 100.7050], icon: blueIcon, desc: "<h3>🦁 Safari World 野生動物園</h3><p>Day 5 全天。超大型野生動物遊獵，看長頸鹿、海豚秀，親子必玩！</p>" },
+            { name: "Siam Paragon (SEA LIFE)", coords: [13.7455, 100.5350], icon: blueIcon, desc: "<h3>🛍️ Siam Paragon & SEA LIFE</h3><p>Day 6 早上。東南亞最大室內水族館，逛街避暑一站式解鎖。</p>" },
+            { name: "Gaysorn Amarin (LV The Place)", coords: [13.7442, 100.5410], icon: blueIcon, desc: "<h3>✨ LV The Place Bangkok</h3><p>Day 6 中午。2026 頂奢地標，路易威登行李箱沉浸式特展，喝高顏值下午茶。</p>" },
+            { name: "The Oasis Spa (Sukhumvit 31)", coords: [13.7375, 100.5695], icon: orangeIcon, desc: "<h3>💆‍♀️ The Oasis Spa (Sukhumvit 31)</h3><p>Day 6 下午。殖民地花園風頂級水療，Mac 專屬 King of Oasis，Fiona 專屬 Queen of Oasis。</p>" },
+            { name: "EMSPHERE & TRIBE", coords: [13.7305, 100.5645], icon: orangeIcon, desc: "<h3>🌇 EMSPHERE & TRIBE 俱樂部</h3><p>Day 6 傍晚。頂樓無邊際泳池俱樂部，看絕美高空日落，隨後狂逛 POP MART 旗艦店與 3C。</p>" },
+            { name: "ICONSIAM / SookSiam", coords: [13.7268, 100.5105], icon: blueIcon, desc: "<h3>🛍️ ICONSIAM & SookSiam</h3><p>Day 7 中午。曼谷河畔地標。一樓 SookSiam 室內冷氣水上市場，享受 77 府在地美食。</p>" },
+            { name: "中國城 (Yaowarat)", coords: [13.7410, 100.5080], icon: orangeIcon, desc: "<h3>🏮 中國城 (Yaowarat)</h3><p>Day 7 傍晚。大口享受燕窩、炭烤麵包、泰式海鮮街頭美食，感受滿滿煙火氣。</p>" },
+            { name: "Asiatique 碼頭夜市", coords: [13.7045, 100.5030], icon: blueIcon, desc: "<h3>🦕 Asiatique 限時侏羅紀世界展</h3><p>Day 3 晚上。限時引爆的 1:1 實體恐龍沉浸體驗，Riley 的最愛！</p>" },
+            { name: "Suvarnabhumi Airport (BKK)", coords: [13.6900, 100.7501], icon: greenIcon, desc: "<h3>✈️ 蘇凡納布機場 (BKK)</h3><p>Day 8。長榮金卡專屬，全家暢享長榮自營高檔貴賓室，冰椰汁喝到飽。</p>" }
+        ];
+
+        bangkokSpots.forEach(function(s) {
+            L.marker(s.coords, { icon: s.icon }).addTo(mapBangkok).bindPopup(s.desc, { className: 'custom-popup' });
+        });
+
+        // Bangkok Routes
+        var bangkokRoutes = {
+            4: L.polyline([
+                sgs_coord,
+                [13.7500, 100.4915], // Grand Palace / Wat Pho
+                [13.7437, 100.4889], // Wat Arun
+                sgs_coord
+            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' }),
+            5: L.polyline([
+                sgs_coord,
+                [13.8650, 100.7050], // Safari World
+                sgs_coord
+            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' }),
+            6: L.polyline([
+                sgs_coord,
+                [13.7455, 100.5350], // Siam Paragon
+                [13.7442, 100.5410], // Gaysorn LV
+                [13.7375, 100.5695], // Oasis Spa
+                [13.7305, 100.5645], // EMSPHERE
+                sgs_coord
+            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' }),
+            7: L.polyline([
+                sgs_coord,
+                [13.7268, 100.5105], // ICONSIAM
+                [13.7410, 100.5080], // Chinatown
+                sgs_coord
+            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' })
+        };
+
+        function showBangkokRoute(day, btn) {
+            var btns = document.querySelectorAll('.bkk-btn');
+            btns.forEach(function(b) { b.className = "bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all"; });
+            if (btn) btn.className = "bkk-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all";
+
+            for (var d in bangkokRoutes) { mapBangkok.removeLayer(bangkokRoutes[d]); }
+
+            if (day === 0) {
+                mapBangkok.setView([13.7365, 100.5400], 12);
+            } else {
+                bangkokRoutes[day].addTo(mapBangkok);
+                mapBangkok.fitBounds(bangkokRoutes[day].getBounds(), { padding: [40, 40] });
+            }
+        }
     </script>
 </body>
 </html>
