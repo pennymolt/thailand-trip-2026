@@ -3,975 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>泰國家族旅遊 2026 - 完整單頁行程</title>
+    <title>2026 夏泰國行 - Fiona 修改版行程</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Noto Sans TC', sans-serif; }
-        .day-section { min-height: 100vh; padding: 100px 24px 80px; }
-        .time-badge { @apply inline-block bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-bold mr-2; }
-    </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        .custom-popup .leaflet-popup-content-wrapper { border-radius: 12px; font-family: 'Noto Sans TC', sans-serif; font-size: 13px; padding: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .custom-popup .leaflet-popup-content h3 { margin: 0 0 6px 0; color: #ea580c; font-weight: 800; font-size: 14px; }
-        .custom-popup .leaflet-popup-content p { margin: 0; color: #4b5563; line-height: 1.5; }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-slate-50 text-slate-800 pb-12">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-teal-600 to-emerald-600 text-white py-12 px-4 shadow-lg text-center relative">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-3">2026 Summer Trip</span>
+            <h1 class="text-3xl sm:text-4xl font-black mb-2">🇹🇭 2026 夏泰國行 (Fiona 修改版)</h1>
+            <p class="text-teal-100 text-sm sm:text-base">芭達雅 ＋ 曼谷 8 天 7 夜奢華放鬆美食之旅</p>
+        </div>
+    </header>
 
-    <!-- Sticky Nav + Progress -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-orange-100 shadow-sm transition-all duration-300" id="navbar">
-        <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
-            <a href="#hero" class="text-lg font-bold text-orange-600 hover:scale-105">🇹🇭 THAILAND 2026</a>
-            <div class="flex items-center gap-3 overflow-x-auto no-scrollbar">
-                <span id="exchange-rate" class="text-xs font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded-full whitespace-nowrap">匯率載入中...</span>
-                <a href="#overview" class="text-xs font-bold px-2 whitespace-nowrap">行程總覽</a>
-                <a href="#day1" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D1</a>
-                <a href="#day2" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D2</a>
-                <a href="#day3" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D3</a>
-                <a href="#day4" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D4</a>
-                <a href="#day5" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D5</a>
-                <a href="#day6" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D6</a>
-                <a href="#day7" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D7</a>
-                <a href="#day8" class="text-xs hover:text-orange-600 px-1 whitespace-nowrap">D8</a>
-                <a href="#food-shopping" class="text-xs font-bold px-2 whitespace-nowrap text-orange-700">美食購物</a>
-                <a href="#checklist" class="text-xs font-bold px-2 whitespace-nowrap text-orange-700">待辦</a>
+    <main class="max-w-4xl mx-auto px-4 mt-8 space-y-8">
+        <!-- Quick Nav / Summary -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <span>📋</span> 行程快速總覽
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                            <th class="p-3">日期</th>
+                            <th class="p-3">星期</th>
+                            <th class="p-3">行程精華</th>
+                            <th class="p-3">住宿地點</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr><td class="p-3 font-semibold text-teal-700">8/8</td><td class="p-3">六</td><td class="p-3">抵達芭達雅 ➔ Mamamia 海鮮麵 ➔ Max Muay 泰拳 / 飛機夜市</td><td class="p-3 text-slate-500">Courtyard North Pattaya</td></tr>
+                        <tr class="bg-slate-50/50"><td class="p-3 font-semibold text-teal-700">8/9</td><td class="p-3">日</td><td class="p-3">真理寺 ➔ 蘭坡海鮮市場 ➔ Beer Garden 夕陽 ➔ 步行街 (Walking St)</td><td class="p-3 text-slate-500">Courtyard North Pattaya</td></tr>
+                        <tr><td class="p-3 font-semibold text-teal-700">8/10</td><td class="p-3">一</td><td class="p-3">蓮姐芒果糯米飯 ➔ 腳底按摩 ➔ 包車曼谷 SGS ➔ Central World (Easy!buddy)</td><td class="p-3 text-slate-500">曼谷喜來登蘇坤大飯店 (SGS)</td></tr>
+                        <tr class="bg-slate-50/50"><td class="p-3 font-semibold text-teal-700">8/11</td><td class="p-3">二</td><td class="p-3">晨間 Spa 避暑 ➔ Terminal 21 ➔ 鄭王廟夕陽 ➔ Asiatique 克里普索人妖秀</td><td class="p-3 text-slate-500">曼谷喜來登蘇坤大飯店 (SGS)</td></tr>
+                        <tr><td class="p-3 font-semibold text-teal-700">8/12</td><td class="p-3">三</td><td class="p-3">Safari World 全日遊獵 ➔ 晚上必排深層泰式按摩</td><td class="p-3 text-slate-500">曼谷喜來登蘇坤大飯店 (SGS)</td></tr>
+                        <tr class="bg-slate-50/50"><td class="p-3 font-semibold text-teal-700">8/13</td><td class="p-3">四</td><td class="p-3">Google 參觀 ➔ 四面佛 ➔ LV The Place 展 ➔ Big C 伴手禮狂購</td><td class="p-3 text-slate-500">曼谷喜來登蘇坤大飯店 (SGS)</td></tr>
+                        <tr><td class="p-3 font-semibold text-teal-700">8/14</td><td class="p-3">五</td><td class="p-3">ICONSIAM 避暑 ➔ 渡輪直達 N5 碼頭 ➔ 嵩越路文創 ☕ ➔ 中國城夜市 🏮</td><td class="p-3 text-slate-500">曼谷喜來登蘇坤大飯店 (SGS)</td></tr>
+                        <tr class="bg-slate-50/50"><td class="p-3 font-semibold text-teal-700">8/15</td><td class="p-3">六</td><td class="p-3">Lazy Daisy 質感早午餐 ➔ 機場快線無塞車直達 ➔ 長榮貴賓室 ➔ BR202 返台</td><td class="p-3 text-slate-500">-</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="h-1 bg-gray-200"><div id="scroll-progress" class="h-full bg-orange-500 transition-all duration-100" style="width:0%"></div></div>
-    </nav>
 
-    <!-- Hero -->
-    <section id="hero" class="day-section flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-orange-50 to-white pt-20">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply blur-3xl opacity-30 animate-pulse"></div>
-        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-yellow-200 rounded-full mix-blend-multiply blur-3xl opacity-30 animate-pulse" style="animation-delay:2s;"></div>
-        <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
-            <h1 class="text-5xl md:text-7xl font-black mb-4 text-gray-900 tracking-tight">汪家泰國海濱奢華家族假期</h1>
-            <p class="text-2xl md:text-3xl text-orange-600 font-bold mb-2">2026.08.08 — 08.15</p>
-            <p class="text-lg text-gray-500 mb-10">8天7夜 · 台北‑曼谷‑芭達雅 · 親子Family Trip</p>
-            <div id="countdown" class="grid grid-cols-4 gap-4 mb-10 max-w-2xl mx-auto">
-                <div class="bg-white shadow-lg border border-orange-100 p-4 rounded-xl"><div id="days" class="text-4xl font-black text-orange-600">00</div><div class="text-xs text-gray-400 uppercase">天</div></div>
-                <div class="bg-white shadow-lg border border-orange-100 p-4 rounded-xl"><div id="hours" class="text-4xl font-black text-orange-600">00</div><div class="text-xs text-gray-400 uppercase">時</div></div>
-                <div class="bg-white shadow-lg border border-orange-100 p-4 rounded-xl"><div id="minutes" class="text-4xl font-black text-orange-600">00</div><div class="text-xs text-gray-400 uppercase">分</div></div>
-                <div class="bg-white shadow-lg border border-orange-100 p-4 rounded-xl"><div id="seconds" class="text-4xl font-black text-orange-600">00</div><div class="text-xs text-gray-400 uppercase">秒</div></div>
-            </div>
-            <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">準備好迎接陽光、沙灘、泰奶和 IconSiam 了嗎？<br>這將是我們最難忘的家庭旅行！</p>
-            <a href="#overview" class="inline-block bg-gradient-to-r from-orange-500 to-orange-700 text-white px-8 py-3 rounded-full font-bold text-base hover:shadow-xl hover:-translate-y-1 transition-all">查看完整行程 →</a>
-        </div>
-    </section>
+        <!-- Detail Cards -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b pb-3">
+                <span>🗓️</span> 每日詳細行程與亮點 (Fiona 最新調整)
+            </h2>
 
-    <!-- Overview -->
-    <section id="overview" class="day-section bg-white">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="flex items-center justify-between mb-12">
-                <h2 class="text-4xl font-black border-l-8 border-orange-500 pl-6">8 天行程總覽</h2>
-                <span class="text-gray-400 font-mono text-sm">2026.08.08 – 08.15</span>
-            </div>
-            <div class="grid md:grid-cols-2 gap-5">
-                <a href="#day1" class="group bg-orange-50 p-6 rounded-2xl border border-orange-100 hover:border-orange-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4">
-                        <span class="text-4xl group-hover:scale-125 transition-transform">✈️</span>
-                        <div><div class="text-orange-600 font-bold text-sm">DAY 1 - 8/8 (六)</div><div class="text-xl font-bold text-gray-800">長榮 BR211 → 芭達雅</div></div>
-                    </div>
-                </a>
-                <a href="#day2" class="group bg-blue-50 p-6 rounded-2xl border border-blue-100 hover:border-blue-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">🏖️</span><div><div class="text-orange-600 font-bold text-sm">DAY 2 - 8/9 (日)</div><div class="text-xl font-bold text-gray-800">芭達雅海灘、按摩、泰拳</div></div></div>
-                </a>
-                <a href="#day3" class="group bg-yellow-50 p-6 rounded-2xl border border-yellow-100 hover:border-yellow-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">🏨</span><div><div class="text-orange-600 font-bold text-sm">DAY 3 - 8/10 (一)</div><div class="text-xl font-bold text-gray-800">包車返曼谷、入住 Sheraton</div></div></div>
-                </a>
-                <a href="#day4" class="group bg-green-50 p-6 rounded-2xl border border-green-100 hover:border-green-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">🕌</span><div><div class="text-orange-600 font-bold text-sm">DAY 4 - 8/11 (二)</div><div class="text-xl font-bold text-gray-800">大皇宮、臥佛寺、鄭王廟</div></div></div>
-                </a>
-                <a href="#day5" class="group bg-purple-50 p-6 rounded-2xl border border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">🦁</span><div><div class="text-orange-600 font-bold text-sm">DAY 5 - 8/12 (三)</div><div class="text-xl font-bold text-gray-800">Safari World 全日遊獵</div></div></div>
-                </a>
-                <a href="#day6" class="group bg-red-50 p-6 rounded-2xl border border-red-100 hover:border-red-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">🛍️</span><div><div class="text-orange-600 font-bold text-sm">DAY 6 - 8/13 (四)</div><div class="text-xl font-bold text-gray-800">水族館、Google 參觀與午餐、LV展</div></div></div>
-                </a>
-                <a href="#day7" class="group bg-teal-50 p-6 rounded-2xl border border-teal-100 hover:border-teal-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">🛍️</span><div><div class="text-orange-600 font-bold text-sm">DAY 7 - 8/14 (五)</div><div class="text-xl font-bold text-gray-800">ICONSIAM 避暑、中國城夜市</div></div></div>
-                </a>
-                <a href="#day8" class="group bg-indigo-50 p-6 rounded-2xl border border-indigo-100 hover:border-indigo-300 hover:shadow-lg transition-all">
-                    <div class="flex items-center gap-4"><span class="text-4xl group-hover:scale-125 transition-transform">✈️</span><div><div class="text-orange-600 font-bold text-sm">DAY 8 - 8/15 (六)</div><div class="text-xl font-bold text-gray-800">最後補貨、BR202 返台</div></div></div>
-                </a>
+            <!-- Day 1 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 1：8/8（六）- 下午抵達芭達雅 ＋ Mamamia 海鮮麵 ＋ 晚間 Max Muay 泰拳 / 飛機夜市</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>08:20 - 11:10</b>：BR211 桃園 ➔ 曼谷 BKK 機場，會合包車司機前往芭達雅。</li>
+                    <li><b>14:00 - 15:30</b>：入住 Courtyard North Pattaya 休息修整。</li>
+                    <li><b>16:00 - 18:00</b>：叫 Grab/Bolt 至 <b>Mamamia 吃媽媽海鮮麵</b>，或搭乘雙條車 (隨攔隨載 10 THB/次，開啟 Google Maps 留意動線)。</li>
+                    <li><b>19:00 - 21:00</b>：觀賞 <b>Max Muay Thai 泰拳</b> 或前往 <b>飛機夜市 (Runway Street Food)</b>。</li>
+                </ul>
             </div>
 
-            <!-- Dual Interactive Maps (Injected exactly once) -->
-            <div class="mt-12 grid md:grid-cols-2 gap-8">
-                <!-- Pattaya Map Card -->
-                <div class="bg-white shadow-xl border border-orange-100 p-6 rounded-3xl relative z-10">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="text-3xl">🏝️</span>
-                        <div>
-                            <h3 class="text-xl font-black text-gray-900">芭達雅互動路線地圖</h3>
-                            <p class="text-xs text-gray-500 mt-0.5">Pattaya: D1-D3 景點、度假飯店與泰拳</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-2 mb-4" id="pattaya-controls">
-                        <button class="pat-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all" onclick="showPattayaRoute(0, this)">🗺️ 顯示全圖</button>
-                        <button class="pat-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showPattayaRoute(1, this)">D1: 抵達</button>
-                        <button class="pat-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showPattayaRoute(2, this)">D2: 真理寺</button>
-                    </div>
-                    <div id="map-pattaya" class="h-[360px] w-full rounded-2xl border border-gray-100 shadow-inner relative z-10"></div>
-                </div>
+            <!-- Day 2 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 2：8/9（日）- 真理寺 ＋ 蘭坡海鮮市場 ＋ Beer Garden ＋ 步行街 Walking Street</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>09:00 - 12:00</b>：參觀震撼木雕 <b>真理寺 (Sanctuary of Truth)</b>。</li>
+                    <li><b>12:00 - 14:00</b>：<b>蘭坡海鮮市場 (Naklua Fish Market)</b> 現場挑選海鮮代客料理。</li>
+                    <li><b>14:00 - 17:00</b>：Terminal 21 Pattaya 吹冷氣或正宗泰式按摩。</li>
+                    <li><b>17:30 - 19:00</b>：<b>Beer Garden</b> 欣賞絕美海景與夕陽。</li>
+                    <li><b>19:00 - 22:00</b>：前往 <b>芭達雅步行街 (Walking Street)</b> 體驗世界級徒步夜生活與氛圍。</li>
+                </ul>
+            </div>
 
-                <!-- Bangkok Map Card -->
-                <div class="bg-white shadow-xl border border-orange-100 p-6 rounded-3xl relative z-10">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="text-3xl">🕌</span>
-                        <div>
-                            <h3 class="text-xl font-black text-gray-900">曼谷互動路線地圖</h3>
-                            <p class="text-xs text-gray-500 mt-0.5">Bangkok: D3-D8 頂奢Spa、ICONSIAM與景點</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4" id="bangkok-controls">
-                        <button class="bkk-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(0, this)">🗺️ 全圖</button>
-                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(4, this)">D4: 文化日</button>
-                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(5, this)">D5: Safari</button>
-                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(6, this)">D6: Spa避暑</button>
-                        <button class="bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all" onclick="showBangkokRoute(7, this)">D7: 購物/中國城</button>
-                    </div>
-                    <div id="map-bangkok" class="h-[360px] w-full rounded-2xl border border-gray-100 shadow-inner relative z-10"></div>
-                </div>
+            <!-- Day 3 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 3：8/10（一）- 蓮姐芒果糯米飯 ＋ 腳底按摩 ➔ 包車前往曼谷 ➔ Central World (Easy!buddy)</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>07:30 - 08:30</b>：芭達雅最神名店 <b>蓮姐芒果糯米飯 (Mae Sai Thong)</b> 當美味早餐！</li>
+                    <li><b>08:30 - 10:30</b>：對面享受腳底按摩，放鬆後辦理退房。</li>
+                    <li><b>11:00 - 13:00</b>：包車直達曼谷喜來登蘇坤大飯店 (Sheraton Grande Sukhumvit)。</li>
+                    <li><b>14:30 - 18:00</b>：Central World 7F 爆吃名店 <b>Easy!buddy</b> 招牌牛肉羅勒炒糯米飯 (Buddy's Favourite) 搭配焦糖玉米與炸鴨蛋。</li>
+                </ul>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 4：8/11（二）- 晨間 Spa 避暑 ➔ Terminal 21 ➔ 鄭王廟夕陽 ➔ Asiatique 克里普索人妖秀</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>10:30 - 12:30</b>：飯店內 <b>The Grande Spa</b> / <b>Better Day Massage</b> / <b>Let's Relax</b> 晨間避暑按摩。</li>
+                    <li><b>12:30 - 14:30</b>：Terminal 21 冷氣美食街午餐。</li>
+                    <li><b>15:00 - 17:30</b>：MRT Sukhumvit ➔ Sanam Chai 站，搭渡輪參訪 <b>鄭王廟 (Wat Arun)</b>（16:00-17:00 夕陽金光最佳拍照點）。</li>
+                    <li><b>17:40 - 21:00</b>：搭觀光船至 Asiatique 河濱夜市享用晚餐，19:45 觀賞 <b>克里普索 (Calypso Cabaret) 人妖秀</b>（3 號倉庫）。</li>
+                </ul>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 5：8/12（三）- Safari World 全日遊獵 ➔ 晚間必排深層泰式按摩</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>08:00 - 17:00</b>：包車專車往返 <b>Safari World</b>，體驗野生動物園區與海洋公園 7 大精采表演秀。</li>
+                    <li><b>19:30 - 21:30</b>：<b>【必排重點】</b> 晚間安排深層泰式按摩，徹底洗去全天走動的雙腿疲勞！</li>
+                </ul>
+            </div>
+
+            <!-- Day 6 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 6：8/13（四）- Google 參觀 ➔ 四面佛 ➔ LV The Place 展 ➔ Big C 伴手禮大採購</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>10:00 - 12:00</b>：<b>Google 泰國辦公室參觀與午餐</b> (Park Ventures 大樓)。</li>
+                    <li><b>12:30 - 15:00</b>：<b>四面佛</b> 祈福 ＋ 參觀 <b>LV The Place Bangkok</b> 沉浸式特展與 Le Café。</li>
+                    <li><b>15:30 - 18:00</b>：<b>Big C Supercenter (Chit Lom 店)</b> 伴手禮大採購 (Fiber 軟糖、起司醬、炸魚皮、青草膏、蜂膠噴霧)。</li>
+                    <li><b>晚餐選擇</b>：亦可安排前往 Ekkamai 體驗 <b>Phed Mark</b> (鐵人名廚和牛打拋飯+炸鴨蛋) 或 <b>Neua, Neua.BKK</b>。</li>
+                </ul>
+            </div>
+
+            <!-- Day 7 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 7：8/14（五）- ICONSIAM 避暑 ➔ 渡輪直達 N5 碼頭 ➔ 嵩越路文創 ☕ ➔ 中國城夜市 🏮</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>10:00 - 14:30</b>：ICONSIAM SookSiam 室內水上市場美食，必喝 <b>ICONSIAM 橘色招牌泰奶</b>。</li>
+                    <li><b>14:30 - 15:00</b>：搭交通船直達 <b>Rajchawongse Pier (N5) 碼頭</b> (2分鐘船程無縫避開塞車)。</li>
+                    <li><b>15:00 - 17:00</b>：探索曼谷最紅文青老街 <b>嵩越路 (Song Wat Road)</b>，體驗 <b>The Summer Coffee Company</b> 與 <b>牛麵王</b>。</li>
+                    <li><b>17:00 - 19:30</b>：步行 5 分鐘抵達 <b>中國城 (Yaowarat) 夜市</b>，爆吃陳億粿條、米其林必比登炸油條+斑蘭醬與平價燕窩。</li>
+                </ul>
+            </div>
+
+            <!-- Day 8 -->
+            <div class="mb-8 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-bold text-teal-800 mb-2">Day 8：8/15（六）- Lazy Daisy 質感早午餐 ➔ 機場快線無塞車直達 ➔ 長榮貴賓室 ➔ 完美返台</h3>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 text-sm">
+                    <li><b>09:30 - 11:30</b>：<b>Lazy Daisy Brunch</b> 質感早午餐 (Sukhumvit 16 巷，招牌 Lazy Big Breakfast / 酪梨水波蛋)。</li>
+                    <li><b>12:00 - 12:40</b>：<b>【神級無塞車路徑】</b> MRT Sukhumvit ➔ Phetchaburi 轉乘 <b>機場快線 (ARL) Makkasan 站</b> 直達 BKK 機場，30 分鐘完美避開週六午後雷雨塞車！</li>
+                    <li><b>13:00 - 15:00</b>：全家暢享 BKK 機場 <b>長榮貴賓室</b> (手標泰奶冰淇淋、新鮮椰汁、泰式河粉、按摩椅)。</li>
+                    <li><b>15:10</b>：BR202 班機起飛返台。</li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <!-- Day 1 -->
-    <section id="day1" class="day-section bg-white">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 1 - 8/8 (六)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">✈️ 長榮 BR211 商務艙 → 芭達雅</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1 rounded-lg border border-orange-100">☀️ 芭達雅：晴時多雲</span>
-                        <span class="inline-flex items-center bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-lg border border-red-100">🌡️ 28°C - 34°C (體感 37°C)</span>
-                        <span class="inline-flex items-center bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-lg border border-blue-100">💧 悶熱高濕</span>
-                    </div>
+        <!-- Food & Shopping Wishlist -->
+        <div class="bg-amber-50 rounded-2xl p-6 shadow-sm border border-amber-200">
+            <h2 class="text-xl font-bold text-amber-900 mb-4 flex items-center gap-2">
+                <span>🛍️</span> Fiona 泰國必買與美食 Wishlist
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-amber-900">
+                <div class="bg-white p-4 rounded-xl border border-amber-100">
+                    <h4 class="font-bold text-amber-800 mb-2">🏪 7-11 / 超市 / 機場必買：</h4>
+                    <p>機場/超商泰奶、船麵、K Panich 芒果糯米飯、斑蘭蛋捲 (老城區)、Fiber 排便軟糖、起司醬、炸魚皮、Tuna Spread 沾醬餅乾、泰國草本青草膏、蜂膠喉嚨噴霧。</p>
                 </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/4Y1A1159_Bangkok_%2833536795515%29.jpg/1280px-4Y1A1159_Bangkok_%2833536795515%29.jpg" alt="Bangkok City" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium"> Departure: 08:20 TPE → 11:10 BKK</p></div>
-            </header>
-
-            <div class="mb-8 p-6 bg-orange-50 rounded-2xl border border-orange-100">
-                <h3 class="text-xl font-bold text-orange-800 mb-2">🚗 交通建議</h3>
-                <p class="text-gray-700">預訂 Klook/KKday 機場接送（BKK → Pattaya），推薦 Toyota Innova 或 Fortuner，容納 luggage + 3 人約 1.5–2 小時，费用約 1,800–2,500 THB。</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-blue-50 p-6 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-blue-700 mb-2">08:00–11:10 出發</h3>
-                    <p class="text-gray-700 text-sm leading-relaxed">桃園機場報到（建議 07:00 前抵達），搭乘長榮航空 BR211 商務艙。Riley 可選豪經艙。</p>
-                </div>
-                <div class="bg-green-50 p-6 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-green-700 mb-2">11:10–14:00 機場 → 芭達雅</h3>
-                    <p class="text-gray-700 text-sm leading-relaxed">入境、提行李、與司機會合，乘包車前往 Courtyard North Pattaya（入住約 14:00）。</p>
-                </div>
-                <div class="bg-yellow-50 p-6 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-yellow-700 mb-2">18:00– 晚餐</h3>
-                    <p class="text-gray-700 text-sm leading-relaxed">推薦：Moom Aroi、Nang Nual（海灘路海鮮），或 The Glass House（浪漫海景，需預訂）。</p>
+                <div class="bg-white p-4 rounded-xl border border-amber-100">
+                    <h4 class="font-bold text-amber-800 mb-2">🌶️ 打拋飯雙雄神店：</h4>
+                    <p><b>1. Phed Mark (Ekkamai 站)</b>：Mark Wiens + 鐵人名廚合作，必點和牛打拋飯 + 焦脆炸鴨蛋。<br><b>2. Easy!buddy (Central World 7F)</b>：招牌牛肉羅勒炒「糯米飯」+ 焦糖玉米 + 炸鴨蛋。</p>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Day 2 -->
-    <section id="day2" class="day-section bg-blue-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 2 - 8/9 (日)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">🏖️ 芭達雅放鬆日</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-sky-50 text-sky-700 text-xs font-bold px-3 py-1 rounded-lg border border-sky-100">☀️ 芭達雅：晴朗酷熱</span>
-                        <span class="inline-flex items-center bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-lg border border-red-100">🌡️ 29°C - 35°C (體感 38°C)</span>
-                        <span class="inline-flex items-center bg-yellow-50 text-yellow-700 text-xs font-bold px-3 py-1 rounded-lg border border-yellow-100">⚠️ 極強紫外線</span>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 bg-gray-50/70 p-2.5 rounded-xl border border-gray-100 text-[11px] text-gray-500 leading-normal">
-                        <div><strong>🌅 早上</strong>: 晴天，適合前往真理寺拍照</div>
-                        <div class="border-l border-gray-200 pl-2"><strong class="text-red-500">☀️ 下午</strong>: 熱浪！必須躲進 Terminal 21 吹冷氣或按摩</div>
-                        <div class="border-l border-gray-200 pl-2"><strong>🌙 晚上</strong>: 海風微涼，極度適合 Cave Beach Club 夕陽沙發座</div>
-                    </div>
-                </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pattaya_beach_from_view_point.jpg/1280px-Pattaya_beach_from_view_point.jpg" alt="Pattaya Beach" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">放鬆、玩水、按摩</p></div>
-            </header>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-100">
-                    <h3 class="text-2xl font-bold text-blue-800 mb-4">⏰ 每日行程安排</h3>
-                    <ul class="space-y-3 text-gray-700 text-sm">
-                        <li><span class="time-badge">08:00–09:00</span> 飯店悠閒早餐</li>
-                        <li><span class="time-badge">09:00–12:00</span> <strong>【真理寺 (Sanctuary of Truth)】</strong>世界最大全木雕神殿，海景與建築極其震撼，拍全家福大片必去（Klook 先購票）。</li>
-                        <li><span class="time-badge">12:00–13:30</span> 午餐：市區海鮮餐廳</li>
-                        <li><span class="time-badge">13:30–17:00</span> <strong>【避暑與舒壓】</strong>建議前往 <strong>Terminal 21 Pattaya</strong> 吹冷氣逛街，並預約一場正宗泰式按摩（如 Health Land）洗去疲憊。</li>
-                        <li><span class="time-badge">17:30–19:00</span> 🌅 <strong>【Cave Beach Club 網美夕陽晚餐】</strong>躺在沙灘懶骨頭沙發上看日落吃海鮮，奢華感拉滿！</li>
-                        <li><span class="time-badge">19:30–21:00</span> 🥊 <strong>【熱血泰拳 Max Muay Thai】</strong>看完日落直接拉車看拳賽，熱血沸騰！</li>
-                        <li><span class="time-badge">21:00–22:00</span> 返回飯店休息。</li>
-                    </ul>
-                </div>
-                <div class="bg-gradient-to-br from-blue-100 to-indigo-50 p-8 rounded-2xl flex flex-col justify-center">
-                    <span class="text-5xl mb-4">🏖️🌅🥊</span>
-                    <h4 class="text-xl font-bold text-blue-800 mb-2">斯容預訂提醒（超級重要）</h4>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-3">
-                        <b>🚨 Cave Beach Club 預約：</b>這家是芭達雅目前最紅的海景沙灘餐廳，週六晚上位置極度緊繃。**務必提前 2-4 週透過其官方 LINE 帳號預訂沙灘第一排沙發座**，否則到現場只能排隊排到哭！
-                    </p>
-                    <p class="text-gray-700 text-sm leading-relaxed">
-                        <b>🥊 泰拳與門票：</b>真理寺與 Max Muay Thai 泰拳門票皆可提前在 Klook 預訂，省去排隊買票的時間，泰拳建議選第一排（Front Row）臨場感更猛。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Day 3 -->
-    <section id="day3" class="day-section bg-yellow-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 3 - 8/10 (一)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">🚗 芭達雅 → 曼谷 Sheraton</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-lg border border-indigo-100">☁️ 曼谷：多雲午後雷陣雨</span>
-                        <span class="inline-flex items-center bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1 rounded-lg border border-orange-100">🌡️ 27°C - 33°C (體感 36°C)</span>
-                    </div>
-                </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/4Y1A1159_Bangkok_%2833536795515%29.jpg/1280px-4Y1A1159_Bangkok_%2833536795515%29.jpg" alt="Bangkok Skyline" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">曼谷 city skyline</p></div>
-            </header>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm">
-                    <h3 class="text-2xl font-bold text-yellow-700 mb-4">⏰ 時間表</h3>
-                    <table class="w-full text-sm text-gray-700">
-                        <tr class="border-b"><td class="py-2 font-bold w-32">09:00–12:00</td><td>最後海灘時間 / 市區最後採買</td></tr>
-                        <tr class="border-b"><td class="py-2 font-bold">12:00–13:00</td><td> lunch at local restaurant</td></tr>
-                        <tr class="border-b"><td class="py-2 font-bold">13:00–14:30</td><td>🚗 包車前往曼谷 (約 1.5h)</td></tr>
-                        <tr class="border-b"><td class="py-2 font-bold">14:30–15:00</td><td>入住 Sheraton Grande Sukhumvit</td></tr>
-                        <tr><td class="py-2 font-bold">15:00–18:00</td><td>休息 / Siam 逛逛</td></tr>
-                    </table>
-                </div>
-                <div class="bg-gradient-to-br from-yellow-100 to-yellow-50 p-8 rounded-2xl flex flex-col justify-center">
-                    <span class="text-7xl mb-4">🏨</span>
-                    <h4 class="text-xl font-bold text-yellow-800 mb-2">Marriott Bonvoy 兌換</h4>
-                    <p class="text-gray-700 text-sm mb-3">使用 175,000 點「住五送一」，住 5 晚只需付 4 晚點數。與 BTS Asok 站天橋直連，免於塞車。</p>
-                    <p class="text-xs text-gray-500">泳池東南亞雨林風，推薦帶 Lucas、Riley 玩水。</p>
-                </div>
-            </div>
-
-            <div class="bg-orange-50 p-6 rounded-2xl border-l-4 border-orange-500">
-                <h4 class="font-bold text-orange-800 mb-1">💡 斯容小叮嚀</h4>
-                <p class="text-orange-700">這間飯店與 BTS Asok 站天橋直連，完全不用怕曼谷的塞車跟午後雷陣雨！</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Day 4 -->
-    <section id="day4" class="day-section bg-green-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 4 - 8/11 (二)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">🕌 大皇宮、臥佛寺、鄭王廟</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-sky-50 text-sky-700 text-xs font-bold px-3 py-1 rounded-lg border border-sky-100">☀️ 曼谷：晴時多雲</span>
-                        <span class="inline-flex items-center bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-lg border border-red-100">🌡️ 28°C - 34°C (體感 38°C)</span>
-                        <span class="inline-flex items-center bg-yellow-50 text-yellow-700 text-xs font-bold px-3 py-1 rounded-lg border border-yellow-100">⚠️ 烈日當空</span>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 bg-gray-50/70 p-2.5 rounded-xl border border-gray-100 text-[11px] text-gray-500 leading-normal">
-                        <div><strong>🌅 早上</strong>: 氣溫尚可，盡早逛完大皇宮避開正午酷暑</div>
-                        <div class="border-l border-gray-200 pl-2"><strong class="text-red-500">☀️ 下午</strong>: 極度悶熱，注意臥佛寺防曬與水分補充</div>
-                        <div class="border-l border-gray-200 pl-2"><strong>🌙 晚上</strong>: 多雲微熱，適合室內建興酒家吃螃蟹吹冷氣</div>
-                    </div>
-                </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%9E%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B9%84%E0%B8%AA%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%8A%E0%B8%95%E0%B8%B8%E0%B8%9E%E0%B8%99.jpg/1280px-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%9E%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B9%84%E0%B8%AA%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%8A%E0%B8%95%E0%B8%B8%E0%B8%9E%E0%B8%99.jpg" alt="Wat Pho" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">大皇宮與玉佛寺</p></div>
-            </header>
-
-            <div class="mb-8 p-6 bg-white rounded-2xl shadow-sm">
-                <h3 class="text-2xl font-bold text-green-700 mb-3">⏰ 詳細行程</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="font-bold text-green-800 mb-2">08:30–11:30 大皇宮 + 玉佛寺</h4>
-                        <p class="text-gray-700 text-sm mb-2">門票 500 THB。建議早去避人潮，衣袖、膝蓋需遮住（可現場租紗籠）。</p>
-                        <h4 class="font-bold text-green-800 mb-2 mt-4">11:30–12:00 步行至臥佛寺</h4>
-                        <p class="text-gray-700 text-sm">步行約 10 分鐘。</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-green-800 mb-2">12:00–13:00 臥佛寺</h4>
-                        <p class="text-gray-700 text-sm mb-2">門票 200 THB。参观繼 46 公尺臥佛。</p>
-                        <h4 class="font-bold text-green-800 mb-2 mt-4">13:00–14:00 午餐</h4>
-                        <p class="text-gray-700 text-sm">Tha Tien 碼頭附近餐廳。</p>
-                        <h4 class="font-bold text-green-800 mb-2 mt-4">14:00–15:00 渡輪至鄭王廟</h4>
-                        <p class="text-gray-700 text-sm">渡輪 4 THB，合適夕陽時分拍照。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-green-50 p-6 rounded-2xl border border-green-200">
-                <h4 class="font-bold text-green-800 mb-2">🚗 交通</h4>
-                <p class="text-gray-700 text-sm mb-2">从 Sheraton Asok 搭 MRT 至 Hua Lamphong，轉乘 Chao Phraya River Boat 至 Tha Tien 碼頭。</p>
-                <h4 class="font-bold text-green-800 mb-2 mt-4">🍽️ 晚餐推薦</h4>
-                <p class="text-gray-700 text-sm"><strong class="text-green-700 font-bold">Krua Apsorn (Dinso店) 或 建興酒家</strong> — 免去地獄級排隊，輕鬆享用米其林必比登推薦的平價蟹肉煎蛋與咖哩蟹。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Day 5 -->
-    <section id="day5" class="day-section bg-purple-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 5 - 8/12 (三)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">🦁 Safari World 全日遊獵</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-sky-50 text-sky-700 text-xs font-bold px-3 py-1 rounded-lg border border-sky-100">☀️ 曼谷：晴時多雲</span>
-                        <span class="inline-flex items-center bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1 rounded-lg border border-orange-100">🌡️ 28°C - 33°C (體感 36°C)</span>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 bg-gray-50/70 p-2.5 rounded-xl border border-gray-100 text-[11px] text-gray-500 leading-normal">
-                        <div class="col-span-3"><strong>⚠️ 斯容提醒</strong>: 園內完全戶外，防蚊液與防曬油必須塗滿，務必安排包車接送以防中暑！</div>
-                    </div>
-                </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Before_the_Show_-_panoramio.jpg/1280px-Before_the_Show_-_panoramio.jpg" alt="Safari World" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">野生動物園探險</p></div>
-            </header>
-
-            <div class="bg-purple-100 p-6 rounded-2xl border border-purple-200 mb-6">
-                <h3 class="text-xl font-bold text-purple-800 mb-2">🚗 交通建議</h3>
-                <p class="text-purple-900">強烈建議包車往返（車程約 40–60 分鐘）。Klook 可訂一日遊含接送，省去高溫等車的痛苦。</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="text-xl font-bold text-purple-700 mb-3">08:00–09:00 出發</h3>
-                    <p class="text-gray-700 text-sm">飯店早餐後乘包車前往 Safari World。</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="text-xl font-bold text-purple-700 mb-3">09:00–12:00 Safari Park</h3>
-                    <p class="text-gray-700 text-sm">搭乘園區巴士穿越野生動物園，近距離看長頸鹿、獅子、老虎自由漫步。</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="text-xl font-bold text-purple-700 mb-3">12:00–13:00 午餐</h3>
-                    <p class="text-gray-700 text-sm">園內 Buffet 或自行安排餐廳。</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="text-xl font-bold text-purple-700 mb-3">13:00–17:00 Marine Park</h3>
-                    <p class="text-gray-700 text-sm">海豚、大象、鳥類表演等 7 場秀穿插，還有超萌餵食體驗。</p>
-                    <p class="text-xs text-gray-500 mt-2">門票建議 Klook 預購以避開排隊。</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="text-xl font-bold text-purple-700 mb-3">17:00–18:00 返程</h3>
-                    <p class="text-gray-700 text-sm">搭乘包車舒適返回 Sheraton 休息。</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="text-xl font-bold text-purple-700 mb-3">18:00– 晚餐 + 休息</h3>
-                    <p class="text-gray-700 text-sm">建議在 Siam 區享用晚餐，隨後可去 Health Land 享受泰式按摩洗去一日疲憊。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Day 6 -->
-    <section id="day6" class="day-section bg-red-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 6 - 8/13 (四)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">💆‍♀️ Oasis Spa 避暑 & EMSPHERE 網美夕陽</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-lg border border-indigo-100">☁️ 曼谷：午後雷陣雨機率高</span>
-                        <span class="inline-flex items-center bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1 rounded-lg border border-orange-100">🌡️ 27°C - 33°C (體感 35°C)</span>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 bg-gray-50/70 p-2.5 rounded-xl border border-gray-100 text-[11px] text-gray-500 leading-normal">
-                        <div class="col-span-3"><strong>🌟 斯容神排程</strong>: 今日全天安排在室內 (SEA LIFE, LV展, Spa, EMSPHERE)，完美避開午後雷陣雨與酷暑！</div>
-                    </div>
-                </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/%E0%B9%80%E0%B8%88%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%932.jpg/1280px-%E0%B9%80%E0%B8%88%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%932.jpg" alt="Wat Arun" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">極致奢華雙人 Spa 體驗</p></div>
-            </header>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-100">
-                    <h3 class="text-2xl font-bold text-red-800 mb-4">⏰ 每日行程安排</h3>
-                    <ul class="space-y-3 text-gray-700 text-sm">
-                        <li><span class="time-badge">08:00–09:00</span> 飯店加購 Rossini's 奢華單點早餐（神級椰子汁必嚐）。</li>
-                        <li><span class="time-badge">09:00–11:30</span> <strong>【SEA LIFE Bangkok 水族館】</strong>位於 Siam Paragon 地下室，吹冷氣看海洋生物。</li>
-                        <li><span class="time-badge">11:30–13:00</span> 🏢 <strong>【Google Thailand 辦公室參觀與午餐】</strong>搭乘 BTS 2 站直達 Phloen Chit 站，直通 Park Ventures 大樓。既然是 Googler，刷卡進去帶 Fiona 與 Riley 參觀高空辦公室、並在 Google 食堂享用午餐！</li>
-                        <li><span class="time-badge">13:00–14:30</span> ✨ <strong>【LV The Place Bangkok 沉浸式特展】</strong>搭 BTS 1 站（或走空橋）回到 Chit Lom 站的 Gaysorn Amarin，參觀路易威登行李箱歷史展，喝杯高顏值咖啡。</li>
-                        <li><span class="time-badge">15:00–17:30</span> 💆 <strong>【Mac & Fiona 頂奢雙人 Spa 時光】</strong>預約 The Oasis Spa (Sukhumvit 31)。Mac 享受 2 小時 <b>King of Oasis</b>，Fiona 享受 <b>Queen of Oasis</b>。Riley 則在花園大廳玩平板、喝免費飲料！</li>
-                        <li><span class="time-badge">17:30–19:30</span> 🌅 <strong>【EMSPHERE & TRIBE 頂樓俱樂部】</strong>在曼谷最火無邊際泳池畔喝調酒看夕陽，Riley 接著逛 POP MART 盲盒旗艦店。</li>
-                        <li><span class="time-badge">19:30–21:00</span> 晚餐建議於 EMSPHERE 頂層，或預約飯店的 Rossini's。</li>
-                    </ul>
-                </div>
-                <div class="bg-gradient-to-br from-red-100 to-orange-50 p-8 rounded-2xl flex flex-col justify-center">
-                    <span class="text-5xl mb-4">💆‍♀️🚙🥥</span>
-                    <h4 class="text-xl font-bold text-red-800 mb-2">斯容接駁避坑神技</h4>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-3">
-                        <b>🚙 Oasis Spa 免費接駁車：</b>它深藏在巷弄裡，走進去形同地獄。預約時務必加註「Need Phrom Phong BTS shuttle service」。接駁點就在 BTS Phrom Phong 1號出口 EmQuartier 的 Dior 專櫃前，舒舒服服坐車進去。
-                    </p>
-                    <p class="text-gray-700 text-sm leading-relaxed">
-                        <b>🌇 Riley 也能進的最紅俱樂部：</b>EMSPHERE 5 樓的 <b>TRIBE Sky Beach Club</b> 允許 20歲以下未成年人在成人陪同下進入，只要在 19:30/20:00 前離場即可。下午做完 Spa 直接過來剛剛好！
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Day 7 -->
-    <section id="day7" class="day-section bg-teal-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 7 - 8/14 (五)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">🛍️ ICONSIAM 避暑 & 中國城夜市</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-sky-50 text-sky-700 text-xs font-bold px-3 py-1 rounded-lg border border-sky-100">☀️ 曼谷：多雲間晴</span>
-                        <span class="inline-flex items-center bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1 rounded-lg border border-orange-100">🌡️ 28°C - 33°C (體感 35°C)</span>
-                    </div>
-                </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Iconsiam_shopping_mall.jpg" alt="ICONSIAM" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">湄南河畔 majestic mall</p></div>
-            </header>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <h3 class="text-2xl font-bold text-teal-700 mb-4">⏰ 每日行程安排</h3>
-                    <ul class="space-y-3 text-gray-700 text-sm">
-                        <li><span class="time-badge">08:00–09:00</span> 飯店悠閒早餐</li>
-                        <li class="pl-4 text-xs text-gray-500 border-l border-teal-200">🚇 **交通**：搭乘 BTS 或 MRT 轉乘前往 ICONSIAM，享受無縫接軌冷氣房。</li>
-                        <li><span class="time-badge">10:00–15:00</span> <strong>【ICONSIAM 全方位體驗】</strong>一樓室內冷氣市集 SookSiam 小吃吃到飽，樓上逛精品與高檔 3C。</li>
-                        <li class="pl-4 text-xs text-gray-500 border-l border-teal-200">🚢 **交通**：15:00 左右直接從 ICONSIAM 碼頭搭乘「Chao Phraya 觀光渡輪」直達中國城碼頭，吹風看河景，完美避開傍晚癱瘓的陸路交通。</li>
-                        <li><span class="time-badge">16:00–18:00</span> <strong>【中國城 (Yaowarat) 探索】</strong>買伴手禮、逛傳統金鋪與乾貨。</li>
-                        <li><span class="time-badge">18:00–20:30</span> 晚餐：中國城街頭美食（炭烤麵包、燕窩、泰式炒河粉）或米其林必比登推薦！</li>
-                        <li class="pl-4 text-xs text-gray-500 border-l border-teal-200">🚇 **交通**：從中國城搭乘 MRT 地鐵直達 Sukhumvit 站，出站即達飯店。</li>
-                        <li><span class="time-badge">20:30–22:00</span> 返回飯店，整理行李，準備明日返台。</li>
-                    </ul>
-                </div>
-                <div class="bg-gradient-to-br from-teal-100 to-amber-50 p-8 rounded-2xl flex flex-col justify-center">
-                    <span class="text-5xl mb-4">🛍️🛶🍜</span>
-                    <h4 class="text-xl font-bold text-teal-800 mb-2">斯容避雷與交通神技</h4>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-3">
-                        <b>💣 斯容無情警告：</b>絕對不要在週四或週五去「洽圖洽市集 (Chatuchak)」！那是週末市集，平日去 90% 以上的店都沒開，拉車過去只會當冤大頭！
-                    </p>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-3">
-                        <b>🛶 無痛流暢動態：</b>下午在最頂的 ICONSIAM 吹冷氣吃 SookSiam 室內水上市場小吃。傍晚直接從 ICONSIAM 碼頭搭「觀光渡輪」直達中國城。這樣不但一路坐船吹風看河景，還能完美避開曼谷傍晚癱瘓的陸路塞車，動線精準、爽度極高！
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Day 8 -->
-    <section id="day8" class="day-section bg-indigo-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="mb-8">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">DAY 8 - 8/15 (六)</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">✈️ BR202 返台</h2>
-            </div>
-                <!-- Weather Badge -->
-                <div class="mt-3 flex flex-col gap-2">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-lg border border-indigo-100">☁️ 曼谷：午後大雷雨</span>
-                        <span class="inline-flex items-center bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-lg border border-blue-100">🚗 交通紅色警戒</span>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 bg-gray-50/70 p-2.5 rounded-xl border border-gray-100 text-[11px] text-gray-500 leading-normal">
-                        <div class="col-span-3"><strong class="text-red-600">🚨 斯容塞車警告</strong>: 週六下午市區必塞車，加上雷陣雨風險，<b>包車務必在 12:00 準時出發</b>，早到機場貴賓室享受才是正解！</div>
-                    </div>
-                </div>
-            <header class="relative h-[50vh] rounded-3xl overflow-hidden mb-10 shadow-2xl">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/202402_Concourse_A_of_Suvarnabhumi_International_Airport.jpg" alt="Suvarnabhumi Airport Departure" class="absolute w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-8"><p class="text-white text-xl font-medium">BKK Airport, homeward bound</p></div>
-            </header>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-indigo-100">
-                    <h3 class="text-2xl font-bold text-indigo-700 mb-4">⏰ 時間表</h3>
-                    <ul class="space-y-3 text-gray-700 text-sm">
-                        <li><span class="time-badge">08:00–09:00</span> 飯店悠閒早餐</li>
-                        <li><span class="time-badge">09:00–12:00</span> 最後自由時間（市區補貨、整理行李與辦理退房）</li>
-                        <li><span class="time-badge">12:00–13:30</span> 包車前往 BKK 機場（⚠️ 週六下午市區容易塞車，12:00 準時出發最穩）</li>
-                        <li><span class="time-badge">13:30–14:30</span> <strong>【機場報到與退稅】</strong>櫃檯辦理登機與托運。如果有一般小額退稅，記得在入關前去 Customs 櫃檯蓋章。</li>
-                        <li><span class="time-badge">14:30–16:00</span> 🥥 <strong>【金卡特權：長榮貴賓室】</strong>Fiona 憑商務艙、你（Mac）憑金卡免費攜伴 Riley，全家同享長榮自營貴賓室！</li>
-                        <li><span class="time-badge">16:00–16:30</span> 準備登機</li>
-                        <li><span class="time-badge">16:30–21:10</span> BR202 起飛返回台北</li>
-                    </ul>
-                </div>
-                <div class="bg-gradient-to-br from-indigo-100 to-blue-50 p-8 rounded-2xl flex flex-col justify-center">
-                    <span class="text-5xl mb-4">🏠🥥🇹🇭</span>
-                    <h4 class="text-xl font-bold text-indigo-800 mb-2">BKK 機場完美奢華收尾</h4>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-3">
-                        <b>🥥 機場最頂享受：</b>曼谷 BKK 的長榮貴賓室是出了名的頂級。裡面裝潢前衛，提供現沖椰子汁、現煮泰式河粉、經典冬蔭功、Mövenpick 冰淇淋與高檔按摩椅。
-                    </p>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-3">
-                        <b>👑 金卡帶人福利：</b>因為你擁有長榮金卡，Riley 這次搭乘豪經艙也能作為你的免費 Companion 直接進去享用！全家完全不用拆散，舒舒服服地吃飽、喝足再上飛機。
-                    </p>
-                    <p class="text-gray-700 text-sm leading-relaxed">
-                        <b>💸 小額退稅須知：</b>如果是衣服、零食等一般消費退稅，商品放行李箱托運即可。登機前記得在入關前的大廳 Customs 櫃檯蓋章，入關後去 VAT Refund 櫃檯直接領現金。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Food & Shopping -->
-    <section id="food-shopping" class="day-section bg-white border-t border-b border-orange-100">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="mb-16 text-center">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">FOOD & SHOPPING</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">🍽️ 斯容餐飲雙選 ＆ 🛒 泰國伴手禮指南</h2>
-                <p class="text-gray-500 mt-3">一天一頓大餐，其餘交給街頭美味與必買伴手禮！</p>
-            </div>
-
-            <!-- Food Dual Selection Cards -->
-            <div class="mb-20">
-                <h3 class="text-3xl font-black text-gray-900 mb-8 border-l-8 border-orange-500 pl-4">🍳 每日美食 A/B 雙選卡片</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Day 1 -->
-                    <div class="bg-orange-50/50 p-6 rounded-2xl border border-orange-100 flex flex-col justify-between animate-fade-in">
-                        <div>
-                            <div class="text-orange-600 font-bold text-xs mb-2">DAY 1 - 8/8 (五) 芭達雅</div>
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">首日海鮮大餐</h4>
-                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-                                <b>A. Moom Aroi (夢亞萊)</b><br>
-                                當地人狂推的無敵海景泰式海鮮，咖哩螃蟹、檸檬魚極嫩。<br><br>
-                                <b>B. The Glass House</b><br>
-                                超浪漫玻璃屋沙灘餐廳，吹海風吃精緻泰法混血菜。
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Day 2 -->
-                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 flex flex-col justify-between animate-fade-in">
-                        <div>
-                            <div class="text-orange-600 font-bold text-xs mb-2">DAY 2 - 8/9 (六) 芭達雅</div>
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">放鬆夜景與市井</h4>
-                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-                                <b>A. Nang Nual (海灘路店)</b><br>
-                                海灘路老牌海鮮，現挑現烤大龍蝦與蒜蓉生蠔，煙火氣十足。<br><br>
-                                <b>B. Hilton Pattaya Horizon</b><br>
-                                希爾頓 34 樓高空酒吧，晚餐後去喝調酒看芭達雅滿月海灣夜景。
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Day 3 -->
-                    <div class="bg-yellow-50/50 p-6 rounded-2xl border border-yellow-100 flex flex-col justify-between animate-fade-in">
-                        <div>
-                            <div class="text-orange-600 font-bold text-xs mb-2">DAY 3 - 8/10 (一) 曼谷</div>
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">曼谷河畔之夜</h4>
-                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-                                <b>A. Asiatique 河濱夜市美食街</b><br>
-                                露天開放街區，芒果糯米飯、泰式炒河粉、香蕉煎餅，邊逛邊吃。<br><br>
-                                <b>B. 昭披耶公主號晚餐遊船</b><br>
-                                登船享用自助海鮮，伴隨薩克斯風，坐在甲板上看鄭王廟夜景。
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Day 4 -->
-                    <div class="bg-green-50/50 p-6 rounded-2xl border border-green-100 flex flex-col justify-between animate-fade-in">
-                        <div>
-                            <div class="text-orange-600 font-bold text-xs mb-2">DAY 4 - 8/11 (二) 曼谷</div>
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">經典咖哩蟹與皇室家常</h4>
-                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-                                <b>A. 建興酒家 (Somboon Seafood)</b><br>
-                                曼谷炒咖哩蟹創始店！黃金比例的滑嫩咖哩蛋包裹肥美大沙公，拌飯極香，全家大小都愛。<br><br>
-                                <b>B. Krua Apsorn (酷阿普森)</b><br>
-                                泰國皇室都愛的地道家常菜！必點咖哩蟹肉、椰子湯，價格極親民。
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Day 5 -->
-                    <div class="bg-purple-50/50 p-6 rounded-2xl border border-purple-100 flex flex-col justify-between animate-fade-in">
-                        <div>
-                            <div class="text-orange-600 font-bold text-xs mb-2">DAY 5 - 8/12 (三) 曼谷</div>
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">商場水上市場與輕奢</h4>
-                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-                                <b>A. SOOKSIAM 室內水上市場</b><br>
-                                ICONSIAM G 樓！集結泰國 77 府小吃，烤豬肉串、泰式甜點應有盡有。<br><br>
-                                <b>B. Kub Kao Kub Pla (吃飯吃魚)</b><br>
-                                摩登時尚的泰式家常料理，綠咖哩、泰式酸辣湯極精緻。
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Day 6 -->
-                    <div class="bg-red-50/50 p-6 rounded-2xl border border-red-100 flex flex-col justify-between animate-fade-in">
-                        <div>
-                            <div class="text-orange-600 font-bold text-xs mb-2">DAY 6 - 8/13 (四) 曼谷</div>
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">商圈避暑美食</h4>
-                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-                                <b>A. Som Tum Der (暹羅廣場店)</b><br>
-                                米其林推薦的東北伊森菜，招牌青木瓜沙拉、脆皮烤雞極度過癮。<br><br>
-                                <b>B. Ban Khun Mae (思鄉客)</b><br>
-                                暹羅廣場老字號傳統泰式餐廳，氛圍溫馨，冬蔭功與綠咖哩最正宗。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Shopping List Section -->
-            <div>
-                <h3 class="text-3xl font-black text-gray-900 mb-8 border-l-8 border-orange-500 pl-4">🛒 斯容強推：泰國必買伴手禮清單</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-2xl border border-orange-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                        <div>
-                            <span class="text-3xl mb-3 block">🍵</span>
-                            <h4 class="text-lg font-bold text-orange-800 mb-2">手標泰奶 (ChaTraMue)</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                <b>必買：泰奶茶包金罐、三合一隨手包</b><br>
-                                泰國最經典的茶香。鐵盒精裝送禮極具質感，隨手包加熱水和冰塊，在家一秒還原路邊攤風味。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-orange-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                        <div>
-                            <span class="text-3xl mb-3 block">🦑</span>
-                            <h4 class="text-lg font-bold text-orange-800 mb-2">超市零食與皇家特產</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                <b>必買：BENTO辣魷魚、皇家蜂蜜、牛奶片</b><br>
-                                BENTO 魷魚片爽脆熱辣，是追劇絕配；皇家計畫的條裝蜂蜜便宜又純正，牛奶片更是小朋友 Lucas & Riley 會搶著吃的零食。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-orange-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                        <div>
-                            <span class="text-3xl mb-3 block">🌿</span>
-                            <h4 class="text-lg font-bold text-orange-800 mb-2">日常藥品與痠痛救星</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                <b>必買：POY-SIAN鼻吸劑、Counterpain軟膏</b><br>
-                                八仙薄荷棒提神醒腦、防蚊蟲，一打一打買極便宜。Counterpain 冷熱痠痛軟膏是全家老小走路久了的救星。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-orange-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                        <div>
-                            <span class="text-3xl mb-3 block">🛍️</span>
-                            <h4 class="text-lg font-bold text-orange-800 mb-2">文創設計與香氛</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                <b>必買：NaRaYa 曼谷包、Karmakamet 香氛</b><br>
-                                NaRaYa 是 Fiona 挑選平價實用伴手禮的首選。Karmakamet 則是泰國頂級香氛（精油、香氛包），味道高級持久，極具品味。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Checklist -->
-    <section id="checklist" class="day-section bg-orange-50">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="mb-10">
-                <span class="text-orange-600 font-bold tracking-widest uppercase">PRE-TRIP CHECKLIST</span>
-                <h2 class="text-5xl font-black mt-2 text-gray-900">📋 出發前待辦清單</h2>
-                <p class="text-gray-600 mt-3">這區才是真的救命。沒訂完這些，行程再美都只是幻覺。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-100">
-                    <h3 class="text-2xl font-bold text-orange-700 mb-4">🚗 交通與包車</h3>
-                    <ul class="space-y-4 text-gray-700 text-sm leading-relaxed">
-                        <li>☐ <strong>8/8 BKK → Pattaya 包車</strong><br><span class="text-gray-500">建議 Toyota Innova / Fortuner，最晚出發前 2 週訂好，避免落地現場亂價。</span></li>
-                        <li>☐ <strong>8/10 Pattaya → Sheraton Grande Sukhumvit 包車</strong><br><span class="text-gray-500">建議直接續用同級車型，13:00 出發最順。</span></li>
-                        <li>☐ <strong>8/12 Safari World 來回包車</strong><br><span class="text-gray-500">這個最重要，現場叫車很蠢。直接先訂來回，省掉曬太陽等車。</span></li>
-                        <li>☐ <strong>8/15 Sheraton → BKK 機場接送</strong><br><span class="text-gray-500">可比較包車 vs HSBC 旅人卡機場接送，確認哪個載行李更舒服。</span></li>
-                        <li>☐ <strong>確認 HSBC 旅人卡機場接送是否可用於台灣端</strong><br><span class="text-gray-500">尤其回程桃園接送，別最後一天才想起來。</span></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-100">
-                    <h3 class="text-2xl font-bold text-orange-700 mb-4">🎟️ 門票與餐廳</h3>
-                    <ul class="space-y-4 text-gray-700 text-sm leading-relaxed">
-                        <li>☐ <strong>Safari World 門票</strong><br><span class="text-gray-500">Klook 先買，避免現場排隊與匯率吃虧。</span></li>
-                        <li>☐ <strong>SEA LIFE Bangkok 門票</strong><br><span class="text-gray-500">如果 Day 6 要走得順，票先買掉最乾脆。</span></li>
-                        <li>☐ <strong>餐廳訂位確認</strong><br><span class="text-gray-500">Krua Apsorn 或建興酒家、Savoey 等熱門餐廳提前確認營業時間與分店。</span></li>
-                        <li>☐ <strong>泰拳 / 人妖秀 / 水上樂園擇一預約</strong><br><span class="text-gray-500">Day 2 不要貪心，一個主活動就夠。</span></li>
-                        <li>☐ <strong>旅遊保險</strong><br><span class="text-gray-500">有長輩有小孩，這筆不能省。</span></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-100">
-                    <h3 class="text-2xl font-bold text-orange-700 mb-4">🏨 住宿與購物節奏</h3>
-                    <ul class="space-y-4 text-gray-700 text-sm leading-relaxed">
-                        <li>☐ <strong>準備足夠外幣現鈔（重要防抽查！）</strong><br><span class="text-gray-500">免簽入境有隨機抽查規定，全家同行務必隨身攜帶至少等值 40,000 泰銖的實體現鈔（台幣、美金皆可，刷卡不認），代表攜帶即可。</span></li>
-                        <li>☐ <strong>再次確認 Courtyard North Pattaya 訂單</strong><br><span class="text-gray-500">核對入住日、房型、早餐人數。</span></li>
-                        <li>☐ <strong>再次確認 Sheraton Grande Sukhumvit 點數住宿</strong><br><span class="text-gray-500">核對 5 晚點數兌換、早餐與加床需求。</span></li>
-                        <li>☐ <strong>整理 Fiona 購物清單</strong><br><span class="text-gray-500">精品、伴手禮、免稅店補貨，不然逛街只會散掉。</span></li>
-                        <li>☐ <strong>確認 Riley 的 Day 6 偏好</strong><br><span class="text-gray-500">3C / 電玩 / 模型 / 球鞋，先定主題，Siam 才不會瞎逛。</span></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-100">
-                    <h3 class="text-2xl font-bold text-orange-700 mb-4">💡 斯容提醒</h3>
-                    <ul class="space-y-4 text-gray-700 text-sm leading-relaxed">
-                        <li>• <strong>一天一頓大餐就夠。</strong> 其他餐簡單處理，不要把全家吃到累。</li>
-                        <li>• <strong>曼谷最大敵人是塞車。</strong> 住 Sheraton 的優勢就是 BTS 直連，能搭捷運就別犯賤坐車。</li>
-                        <li>• <strong>Day 2 芭達雅活動只能選主秀。</strong> 水上活動 + 晚上泰拳已經很滿。</li>
-                        <li>• <strong>晚餐策略</strong> 避開排隊名店，多利用百貨公司內的高級分店或提前訂位。</li>
-                    </ul>
-                </div>
-
-                <!-- 💳 Payment Guide Card -->
-                <div class="bg-gradient-to-br from-blue-50 to-sky-50 p-8 rounded-2xl shadow-sm border border-blue-100 md:col-span-2">
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">💳 2026 泰國電子支付實戰與防坑指引</h3>
-                    <p class="text-blue-800 text-sm mb-6 leading-relaxed">
-                        泰國行動支付這幾年發展極快，但對台灣遊客而言，有幾個非常特殊的「坎」，請務必收下這份實戰配置：
-                    </p>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-50">
-                            <h4 class="font-bold text-blue-900 mb-2 flex items-center gap-1.5">⚡ PromptPay (掃碼之王)</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                泰國無所不在的藍底白字 QR Code（如路邊攤、小店），台灣目前<b>沒有</b>跟 PromptPay 跨國互通！街口、全支付、台灣Pay 在泰國是<b>掃不過的</b>。遊客若想強行掃碼只能在機場 KBank 櫃檯持護照申辦 <b>TAGTHAi Easy Pay 預付卡</b>，但<b>匯率極差</b>，短途觀光非常不推薦。
-                            </p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-50">
-                            <h4 class="font-bold text-blue-900 mb-2 flex items-center gap-1.5">🐼 微信 / 支付寶 (被掃神技)</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                <b>超商 (7-11)、藥妝店 (Boots/Watsons)、大商場與免稅店</b> 100% 支援微信與支付寶！在 App 內綁定台灣信用卡（如台新 @GoGo卡、永豐幣倍卡等），直接<b>出示付款碼給店員掃</b>。官方<b>免收 3% 支付費</b>（僅卡片 1.5% 境外費），安全防盜刷還能賺滿海外網購高達 <b>3%~3.8%</b> 的信用卡回饋！
-                            </p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-50">
-                            <h4 class="font-bold text-blue-900 mb-2 flex items-center gap-1.5">💵 7-11 與現金剛需</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed">
-                                ⚠️ <b>泰國 7-11「不收」PromptPay 掃碼！</b> 但接受實體信用卡、Apple Pay、微信與支付寶。此外，街邊小販、夜市、嘟嘟車、傳統按摩小店只收現金。全家入境請務必隨身攜帶至少等值 <b>40,000 泰銖</b> 的台幣或美金現鈔備查（過關後去市區 <b>SuperRich</b> 換匯最劃算）。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Decision Log -->
-                <div class="bg-red-50/70 p-8 rounded-2xl shadow-sm border border-red-100 md:col-span-2">
-                    <h3 class="text-2xl font-bold text-red-800 mb-4">🚫 歷史決策與避雷筆記 (Decision Log)</h3>
-                    <p class="text-red-700 text-sm mb-6 leading-relaxed">這區記錄我們討論過、明確「不要」或「已替換」的行程決策，省得以後像乒乓球一樣來回修改：</p>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-red-100">
-                            <h4 class="font-bold text-red-800 mb-2">❌ 戶外水上樂園</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed"><b>決策：</b>不加入行程。<br><b>原因：</b>8月泰國酷暑，在戶外曝曬整天體力消耗極大，容易曬傷、中暑，不符奢華度假主軸。Day 2 早上改去真理寺拍全家福大片，下午回飯店游泳、去 T21 吹冷氣。</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-red-100">
-                            <h4 class="font-bold text-red-800 mb-2">❌ 傳奇路邊攤 Jay Fai</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed"><b>決策：</b>不加入行程。<br><b>原因：</b>排隊地獄（動輒3-5小時），環境炎熱且價格極高、性價比低，帶家人去排絕對翻臉。改去免排隊的 Krua Apsorn 或建興酒家，輕鬆享用蟹肉煎蛋與咖哩蟹。</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-red-100">
-                            <h4 class="font-bold text-red-800 mb-2">❌ 週四前往洽圖洽週末市集</h4>
-                            <p class="text-gray-600 text-xs leading-relaxed"><b>決策：</b>嚴禁週四前往。<br><b>原因：</b>週末市集週四有90%店不開。改去最頂的 IconSiam 吹冷氣，傍晚用觀光渡輪直達中國城 (Yaowarat) 逛夜市，完美避開傍晚癱瘓的陸路塞車。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 text-center text-gray-400 text-sm bg-white border-t border-gray-100">
-        <p>© 2026 汪家泰國海濱奢華家族假期 | 斯容 (Szu Jung) 策劃</p>
-        <p class="mt-2 text-xs">匯率：open.er-api.com | 圖片：Unsplash</p>
+    <footer class="text-center text-slate-400 text-xs py-8">
+        2026 Thailand Trip Plan • Designed & Updated for Mac & Fiona
     </footer>
-
-    <!-- Scripts -->
-    <script>
-        // Countdown
-        const targetDate = new Date("2026-08-08T00:00:00").getTime();
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            const d = Math.floor(distance / (1000*60*60*24)), h = Math.floor((distance%(1000*60*60*24))/(1000*60*60)), m = Math.floor((distance%(1000*60*60))/(1000*60)), s = Math.floor((distance%(1000*60))/1000);
-            document.getElementById("days").innerText = d.toString().padStart(2,'0');
-            document.getElementById("hours").innerText = h.toString().padStart(2,'0');
-            document.getElementById("minutes").innerText = m.toString().padStart(2,'0');
-            document.getElementById("seconds").innerText = s.toString().padStart(2,'0');
-        }
-        setInterval(updateCountdown,1000); updateCountdown();
-
-        // Exchange Rate
-        async function updateExchangeRate() {
-            try {
-                const r = await fetch('https://open.er-api.com/v6/latest/THB');
-                const d = await r.json(); document.getElementById('exchange-rate').innerText = `1 THB ≈ ${d.rates.TWD.toFixed(2)} TWD`;
-            } catch { document.getElementById('exchange-rate').innerText = '1 THB ≈ 0.94 TWD'; }
-        }
-        updateExchangeRate(); setInterval(updateExchangeRate, 3600000);
-
-        // Scroll Progress
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("scroll-progress").style.width = (winScroll/height*100) + "%";
-        });
-
-        // Nav hide/show
-        let lastScroll = 0; window.addEventListener('scroll', () => {
-            const curr = window.scrollY;
-            document.getElementById('navbar').style.transform = curr > lastScroll && curr > 200 ? 'translateY(-100%)' : 'translateY(0)';
-            lastScroll = curr;
-        });
-    </script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        // Custom Colored Markers
-        function getMarkerIcon(color) {
-            return L.icon({
-                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-' + color + '.png',
-                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34],
-                shadowSize: [41, 41]
-            });
-        }
-
-        var redIcon = getMarkerIcon('red');
-        var blueIcon = getMarkerIcon('blue');
-        var orangeIcon = getMarkerIcon('orange');
-        var greenIcon = getMarkerIcon('green');
-
-        // ==========================================
-        // 1. PATTAYA MAP (D1 - D3)
-        // ==========================================
-        var mapPattaya = L.map('map-pattaya', { scrollWheelZoom: false }).setView([12.9350, 100.8900], 12);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OSM'
-        }).addTo(mapPattaya);
-
-        var pattayaSpots = [
-            { name: "Courtyard North Pattaya", coords: [12.9520, 100.8850], icon: redIcon, desc: "<h3>🏨 Courtyard North Pattaya</h3><p>Day 1-2 住宿大本營。全新精緻度假酒店，位置安靜優雅。</p>" },
-            { name: "真理寺 (Sanctuary of Truth)", coords: [12.9715, 100.8890], icon: blueIcon, desc: "<h3>⛩️ 真理寺</h3><p>Day 2 早上。全木雕震撼神殿，拍全家福首選！</p>" },
-            { name: "Terminal 21 Pattaya", coords: [12.9430, 100.8885], icon: blueIcon, desc: "<h3>🛍️ Terminal 21 Pattaya</h3><p>Day 2 下午。航站主題大商場，吹冷氣避暑好地方。</p>" },
-            { name: "Cave Beach Club", coords: [12.8250, 100.9120], icon: orangeIcon, desc: "<h3>🌅 Cave Beach Club</h3><p>Day 2 夕陽晚餐。超火沙灘第一排沙發座，必須提前 LINE 預約！</p>" },
-            { name: "Max Muay Thai", coords: [12.9330, 100.9000], icon: orangeIcon, desc: "<h3>🥊 Max Muay Thai</h3><p>Day 2 晚上。熱血賁張的職業泰拳賽，打擊感爆棚。</p>" }
-        ];
-
-        pattayaSpots.forEach(function(s) {
-            L.marker(s.coords, { icon: s.icon }).addTo(mapPattaya).bindPopup(s.desc, { className: 'custom-popup' });
-        });
-
-        // Pattaya Routes
-        var pattayaRoutes = {
-            1: L.polyline([[12.9520, 100.8850]], { color: '#f97316', weight: 4 }), // Just hotel on arrival
-            2: L.polyline([
-                [12.9520, 100.8850], // Hotel
-                [12.9715, 100.8890], // Sanctuary
-                [12.9430, 100.8885], // Terminal 21
-                [12.8250, 100.9120], // Cave Beach
-                [12.9330, 100.9000], // Muay Thai
-                [12.9520, 100.8850]  // Back to Hotel
-            ], { color: '#f97316', weight: 4, opacity: 0.8, dashArray: '8, 8' })
-        };
-
-        function showPattayaRoute(day, btn) {
-            var btns = document.querySelectorAll('.pat-btn');
-            btns.forEach(function(b) { b.className = "pat-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all"; });
-            if (btn) btn.className = "pat-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all";
-
-            for (var d in pattayaRoutes) { mapPattaya.removeLayer(pattayaRoutes[d]); }
-
-            if (day === 0) {
-                mapPattaya.setView([12.9350, 100.8900], 12);
-            } else {
-                pattayaRoutes[day].addTo(mapPattaya);
-                mapPattaya.fitBounds(pattayaRoutes[day].getBounds(), { padding: [40, 40] });
-            }
-        }
-
-        // ==========================================
-        // 2. BANGKOK MAP (D3 - D8)
-        // ==========================================
-        var mapBangkok = L.map('map-bangkok', { scrollWheelZoom: false }).setView([13.7365, 100.5400], 12);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OSM'
-        }).addTo(mapBangkok);
-
-        var sgs_coord = [13.7365, 100.5595];
-
-        var bangkokSpots = [
-            { name: "Sheraton Grande Sukhumvit", coords: sgs_coord, icon: redIcon, desc: "<h3>🏨 Sheraton Grande Sukhumvit</h3><p>Day 3-8 曼谷大本營。直連 BTS Asok 站，地段之王，雨林泳池超正！</p>" },
-            { name: "大皇宮 & 臥佛寺", coords: [13.7500, 100.4915], icon: blueIcon, desc: "<h3>🕌 大皇宮 & 臥佛寺</h3><p>Day 4 早上。泰國國寶級文化地標，震撼金碧輝煌。</p>" },
-            { name: "鄭王廟 (Wat Arun)", coords: [13.7437, 100.4889], icon: blueIcon, desc: "<h3>⛩️ 鄭王廟 (Wat Arun)</h3><p>Day 4 下午。純白絕美佛塔，落日與河景極致上鏡。</p>" },
-            { name: "Safari World", coords: [13.8650, 100.7050], icon: blueIcon, desc: "<h3>🦁 Safari World 野生動物園</h3><p>Day 5 全天。超大型野生動物遊獵，看長頸鹿、海豚秀，親子必玩！</p>" },
-            { name: "Siam Paragon (SEA LIFE)", coords: [13.7455, 100.5350], icon: blueIcon, desc: "<h3>🛍️ Siam Paragon & SEA LIFE</h3><p>Day 6 早上。東南亞最大室內水族館，逛街避暑一站式解鎖。</p>" },
-            { name: "Google Thailand (Park Ventures)", coords: [13.7431, 100.5489], icon: greenIcon, desc: "<h3>🏢 Google Thailand</h3><p>Day 6 中午。位於 Park Ventures Ecoplex 大樓，直連 BTS Phloen Chit 站。既然是 Googler，刷卡帶全家參觀並享用午餐！</p>" },
-            { name: "Gaysorn Amarin (LV The Place)", coords: [13.7442, 100.5410], icon: blueIcon, desc: "<h3>✨ LV The Place Bangkok</h3><p>Day 6 中午。2026 頂奢地標，路易威登行李箱沉浸式特展，喝高顏值下午茶。</p>" },
-            { name: "The Oasis Spa (Sukhumvit 31)", coords: [13.7375, 100.5695], icon: orangeIcon, desc: "<h3>💆‍♀️ The Oasis Spa (Sukhumvit 31)</h3><p>Day 6 下午。殖民地花園風頂級水療，Mac 專屬 King of Oasis，Fiona 專屬 Queen of Oasis。</p>" },
-            { name: "EMSPHERE & TRIBE", coords: [13.7305, 100.5645], icon: orangeIcon, desc: "<h3>🌇 EMSPHERE & TRIBE 俱樂部</h3><p>Day 6 傍晚。頂樓無邊際泳池俱樂部，看絕美高空日落，隨後狂逛 POP MART 旗艦店與 3C。</p>" },
-            { name: "ICONSIAM / SookSiam", coords: [13.7268, 100.5105], icon: blueIcon, desc: "<h3>🛍️ ICONSIAM & SookSiam</h3><p>Day 7 中午。曼谷河畔地標。一樓 SookSiam 室內冷氣水上市場，享受 77 府在地美食。</p>" },
-            { name: "中國城 (Yaowarat)", coords: [13.7410, 100.5080], icon: orangeIcon, desc: "<h3>🏮 中國城 (Yaowarat)</h3><p>Day 7 傍晚。大口享受燕窩、炭烤麵包、泰式海鮮街頭美食，感受滿滿煙火氣。</p>" },
-            { name: "Asiatique 碼頭夜市", coords: [13.7045, 100.5030], icon: blueIcon, desc: "<h3>🦕 Asiatique 限時侏羅紀世界展</h3><p>Day 3 晚上。限時引爆的 1:1 實體恐龍沉浸體驗，Riley 的最愛！</p>" },
-            { name: "Suvarnabhumi Airport (BKK)", coords: [13.6900, 100.7501], icon: greenIcon, desc: "<h3>✈️ 蘇凡納布機場 (BKK)</h3><p>Day 8。長榮金卡專屬，全家暢享長榮自營高檔貴賓室，冰椰汁喝到飽。</p>" }
-        ];
-
-        bangkokSpots.forEach(function(s) {
-            L.marker(s.coords, { icon: s.icon }).addTo(mapBangkok).bindPopup(s.desc, { className: 'custom-popup' });
-        });
-
-        // Bangkok Routes
-        var bangkokRoutes = {
-            4: L.polyline([
-                sgs_coord,
-                [13.7500, 100.4915], // Grand Palace / Wat Pho
-                [13.7437, 100.4889], // Wat Arun
-                sgs_coord
-            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' }),
-            5: L.polyline([
-                sgs_coord,
-                [13.8650, 100.7050], // Safari World
-                sgs_coord
-            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' }),
-            6: L.polyline([
-                sgs_coord,
-                [13.7455, 100.5350], // Siam Paragon
-                [13.7431, 100.5489], // Google Thailand
-                [13.7442, 100.5410], // Gaysorn LV
-                [13.7375, 100.5695], // Oasis Spa
-                [13.7305, 100.5645], // EMSPHERE
-                sgs_coord
-            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' }),
-            7: L.polyline([
-                sgs_coord,
-                [13.7268, 100.5105], // ICONSIAM
-                [13.7410, 100.5080], // Chinatown
-                sgs_coord
-            ], { color: '#ea580c', weight: 4, opacity: 0.8, dashArray: '8, 8' })
-        };
-
-        function showBangkokRoute(day, btn) {
-            var btns = document.querySelectorAll('.bkk-btn');
-            btns.forEach(function(b) { b.className = "bkk-btn px-3 py-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold rounded-lg transition-all"; });
-            if (btn) btn.className = "bkk-btn px-3 py-1.5 bg-orange-600 text-white text-xs font-bold rounded-lg transition-all";
-
-            for (var d in bangkokRoutes) { mapBangkok.removeLayer(bangkokRoutes[d]); }
-
-            if (day === 0) {
-                mapBangkok.setView([13.7365, 100.5400], 12);
-            } else {
-                bangkokRoutes[day].addTo(mapBangkok);
-                mapBangkok.fitBounds(bangkokRoutes[day].getBounds(), { padding: [40, 40] });
-            }
-        }
-    </script>
 </body>
 </html>
